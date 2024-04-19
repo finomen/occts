@@ -1,0 +1,26 @@
+name: Win64
+on:
+  push:
+jobs:
+  build-win64:
+    name: Win64
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.1.2
+        with:
+          submodules: recursive
+      - uses: ilammy/msvc-dev-cmd@v1
+      - uses: nuget/setup-nuget@v2
+        with:
+          nuget-api-key: ${{ secrets.NuGetAPIKey }}
+          nuget-version: '5.x'
+      - name: Restore
+        run: msbuild -t:Restore
+      - name: Pack
+        run: msbuild /t:Build /p:Configuration=Release /p:Platform=x64
+      - name: Package
+        run: nuget pack occts.nuspec
+      - name: Push
+        run: nuget push *.nupkg -Source https://api.nuget.org/v3/index.json -SkipDuplicate
+

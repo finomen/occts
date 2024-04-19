@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>OCCTS</id>
+        <version>0.0.1</version>
+        <description>C# wrapper for subset of https://github.com/Open-Cascade-SAS/OCCT</description>
+        <authors>Nikolai Filchenko</authors>
+		<projectUrl>https://github.com/finomen/occts</projectUrl>
+		<license type="expression">MIT</license>
+		<readme>README.md</readme>
+		<dependencies>
+		<group targetFramework="net8.0">
+			<dependency id="OCCT.WIN64" version="7.8.1.2" />
+		</group>
+	</dependencies>
+    </metadata>
+    <files>
+		<file src="README.md" target="/" />
+		<file src="x64\Release\OCCTS.dll" target="lib\net8.0" />
+	</files>
+</package>
