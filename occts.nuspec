@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
         <id>OCCTS</id>
-        <version>0.0.2</version>
+        <version>0.0.3</version>
         <description>C# wrapper for subset of https://github.com/Open-Cascade-SAS/OCCT</description>
         <authors>Nikolai Filchenko</authors>
 		<projectUrl>https://github.com/finomen/occts</projectUrl>
@@ -10,7 +10,7 @@
 		<readme>README.md</readme>
 		<dependencies>
 		<group targetFramework="net8.0">
-			<dependency id="OCCT.WIN64" version="7.8.1.2" />
+			<dependency id="OCCT.WIN64" version="7.8.1.3" />
 		</group>
 	</dependencies>
     </metadata>
