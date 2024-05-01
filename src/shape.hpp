@@ -17,6 +17,8 @@ namespace OCCTS {
 		Shape(T&& shape);
 	public:
 		static Shape^ Box(double dx, double dy, double dz);
+		static Shape^ Sphere(double r);
+		static Shape^ Cylinder(double r, double h);
 		static Shape^ Prism(Face^ face, Vector^ dir);
 
 		property System::Collections::Generic::IEnumerable<Edge^>^ Edges {

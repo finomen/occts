@@ -1,6 +1,8 @@
 #include "shape.hpp"
 
 #include <BRepPrimAPI_MakeBox.hxx>
+#include <BRepPrimAPI_MakeSphere.hxx>
+#include <BRepPrimAPI_MakeCylinder.hxx>
 #include <BRepPrimAPI_MakePrism.hxx>
 #include <BRepFilletAPI_MakeFillet.hxx>
 #include <BRepBuilderAPI_Transform.hxx>
@@ -16,6 +18,14 @@ namespace OCCTS {
 
 	Shape^ Shape::Box(double dx, double dy, double dz) {
 		return gcnew Shape(BRepPrimAPI_MakeBox(dx, dy, dz).Shape());
+	}
+
+	Shape^ Shape::Sphere(double r) {
+		return gcnew Shape(BRepPrimAPI_MakeSphere(r).Shape());
+	}
+
+	Shape^ Shape::Cylinder(double r, double h) {
+		return gcnew Shape(BRepPrimAPI_MakeCylinder(r, h).Shape());
 	}
 
 	Shape^ Shape::Prism(Face^ face, Vector^ dir) {
