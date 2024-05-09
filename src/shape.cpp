@@ -7,6 +7,7 @@
 #include <BRepFilletAPI_MakeFillet.hxx>
 #include <BRepBuilderAPI_Transform.hxx>
 #include <BRepAlgoAPI_Cut.hxx>
+#include <BRepAlgoAPI_Fuse.hxx>
 #include <STEPControl_Reader.hxx>
 #include <gp_Trsf.hxx>
 
@@ -56,8 +57,21 @@ namespace OCCTS {
 		return gcnew Shape(xform.Shape());
 	}
 
+	Shape^ Shape::Mirror(Point^ orig, Vector^ dir) {
+		gp_Trsf trsf;
+		trsf.SetMirror(gp_Ax2(orig->get(), dir->get()));
+		BRepBuilderAPI_Transform xform(mShape.get(), trsf);
+		return gcnew Shape(xform.Shape());
+	}
+
+	
+
 	Shape^ Shape::Cut(Shape^ tool) {
 		return gcnew Shape(BRepAlgoAPI_Cut(mShape.get(), tool->get()).Shape());
+	}
+
+	Shape^ Shape::Merge(Shape^ tool) {
+		return gcnew Shape(BRepAlgoAPI_Fuse(mShape.get(), tool->get()).Shape());
 	}
 
 	Shape^ Shape::LoadStep(System::String^ stepData) {

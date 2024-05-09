@@ -35,10 +35,12 @@ namespace OCCTS {
 
 		Shape^ Move(Vector^ vector);
 		Shape^ Rotate(Point^ orig, Vector^ dir, double ang);
+		Shape^ Mirror(Point^ orig, Vector^ dir);
 
 		Shape^ Cut(Shape^ tool);
+		Shape^ Merge(Shape^ tool);
 
-		Shape^ LoadStep(System::String^ stepData);
+		static Shape^ LoadStep(System::String^ stepData);
 	private:
 		Wrapper<TopoDS_Shape> mShape;
 	};
