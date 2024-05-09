@@ -38,6 +38,7 @@ namespace OCCTS {
 
 		Shape^ Cut(Shape^ tool);
 
+		Shape^ LoadStep(System::String^ stepData);
 	private:
 		Wrapper<TopoDS_Shape> mShape;
 	};

@@ -18,6 +18,7 @@ namespace OCCTS {
 		Assembly^ Add(Shape^ shape, System::String^ name, System::Drawing::Color^ color);
 
 		System::String^ MakeStep();
+		
 	private:
 		bool doInit();
 	private:

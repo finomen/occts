@@ -7,6 +7,7 @@
 #include <BRepFilletAPI_MakeFillet.hxx>
 #include <BRepBuilderAPI_Transform.hxx>
 #include <BRepAlgoAPI_Cut.hxx>
+#include <STEPControl_Reader.hxx>
 #include <gp_Trsf.hxx>
 
 namespace OCCTS {
@@ -57,5 +58,14 @@ namespace OCCTS {
 
 	Shape^ Shape::Cut(Shape^ tool) {
 		return gcnew Shape(BRepAlgoAPI_Cut(mShape.get(), tool->get()).Shape());
+	}
+
+	Shape^ Shape::LoadStep(System::String^ stepData) {
+		using System::Runtime::InteropServices::Marshal;
+		std::istringstream iss((const char*)(Marshal::StringToHGlobalAnsi(stepData)).ToPointer());
+		STEPControl_Reader Reader;
+		Reader.ReadStream("step", iss);
+		Reader.TransferRoots();
+		return gcnew Shape(Reader.OneShape());
 	}
 }
